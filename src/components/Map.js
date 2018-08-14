@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
-
+/*global google*/
 
 		class MyMap extends Component {
 
@@ -8,22 +8,25 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 
 				const GoogleMapExample = withGoogleMap(props => (
 					<GoogleMap
-					defaultCenter={{lat: 53.166083, lng: 9.918994}}
-					defaultZoom={13}
-					onMarkerClick={this.props.handleMarkerClick}
+					defaultCenter={this.props.defaultCenter}
+					//center={this.props.center}
+					//defaultZoom={this.props.defaultZoom}
+					zoom= {this.props.zoom}
+					onClick={this.props.onMapClick}
 					>
 						{this.props.locations.map(location =>
 							<Marker
 								key={location.id}
-								onClick={this.props.onMarkerClick}
+								onClick={(e) => this.props.onMarkerClick(location)}
 								position={location.location}
 								title={location.name}
 								name={location.name}
-								//animation={location.name === this.props.selectedPlace.name ?
-									//this.props.google.maps.Animation.BOUNCE : null}
+								defaultAnimation={location.name === this.props.selectedPlace.name ?
+									google.maps.Animation.BOUNCE : null}
 							>
-							{this.props.isOpen &&
+							{this.props.isOpen && location.id === this.props.selectedPlace.id &&
 								<InfoWindow
+									//position
 									onCloseClick={this.props.handleToggle}
 								>
 									<h3>{location.name}</h3>
@@ -46,3 +49,5 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 		}
 
 		export default MyMap
+
+		//src=' + this.state.fsqData.photos.groups[1].items["0"].prefix + '300x300' + this.state.fsqData.photos.groups[1].items["0"].suffix + '>'
