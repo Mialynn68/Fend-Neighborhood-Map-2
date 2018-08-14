@@ -37,8 +37,30 @@ class App extends Component {
 		this.getLocations()
 	}
 
+	handleToggle () {
+		this.state.isOpen === false ?
+		this.setState({isOpen: true}) : this.setState({isOpen: false})
+	}
+
+	onMarkerClick = (props, marker, e) => {
+		this.setState({
+			selectedPlace: props,
+			//activeMarker: marker,
+			position: props.position,
+		})
+		this.handleToggle()
+	}
+
+	onMapClick = (props) => {
+			this.setState({
+				selectedPlace: {}
+			})
+			this.handleToggle()
+		}
+
+
   render() {
-		console.log(this.state.locations)
+		//console.log(this.state.locations)
     return (
       <div className="App">
 				<div className="Container">
@@ -48,6 +70,10 @@ class App extends Component {
 					<div className="main">
 						<Map
 							locations={this.state.locations}
+							handleToggle={this.handleToggle}
+							onMapClick={this.onMapClick}
+							onMarkerClick={this.onMarkerClick}
+							isOpen={this.state.isOpen}
 						/>
 					</div>
       	</div>
