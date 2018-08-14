@@ -5,6 +5,7 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 		class MyMap extends Component {
 
 			render() {
+			console.log(this.props.selectedPlace)
 
 				const GoogleMapExample = withGoogleMap(props => (
 					<GoogleMap
@@ -27,9 +28,20 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 							{this.props.isOpen && location.id === this.props.selectedPlace.id &&
 								<InfoWindow
 									//position
+									className='infowindow'
 									onCloseClick={this.props.handleToggle}
 								>
-									<h3>{location.name}</h3>
+									<div>
+										<h3 className='infowindow-heading'>{this.props.selectedPlace.name}</h3>
+										<hr/>
+										<div className='infowindow-content'>
+											<p className='infowindow-content-heading'>Address:</p>
+											{this.props.selectedPlace.location && this.props.selectedPlace.location.address && this.props.selectedPlace.location.city &&
+											<p className='infowindow-content-text'>{this.props.selectedPlace.location.address}<br/>{this.props.selectedPlace.location.city}
+											</p>
+											}
+										</div>
+									</div>
 								</InfoWindow>
 							}
 							</Marker>

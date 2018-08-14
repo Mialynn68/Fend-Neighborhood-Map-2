@@ -52,26 +52,28 @@ class App extends Component {
 			const result = this.state.initialLocations.filter(location =>
 			location.categories.id === '4bf58dd8d48988d1c7941735');
 			this.setState({ locations: result })
-			console.log(result)
 		} else {
 			this.getLocations()
 		}
 
 	}
 
-	handleToggle () {
-		!this.state.isOpen ?
-		this.setState({isOpen: true}) : this.setState({isOpen: false})
-	}
+	/*handleToggle () {
+		this.state.isOpen &&
+		this.setState({isOpen: false})
+		this.state.isOpen === false &&
+		this.setState({isOpen: true})
+	}*/
 
 	onMarkerClick = (props) => {
 		this.setState({
 			selectedPlace: props,
 			position: props.position,
 			zoom: 15,
-			center: props.location
+			center: props.location,
+			isOpen: true
 		})
-		this.handleToggle()
+		//this.handleToggle()
 	}
 
 	onListitemClick = (props) => {
@@ -79,23 +81,25 @@ class App extends Component {
 			selectedPlace: props,
 			position: props.location,
 			zoom: 15,
-			center: props.location
+			center: props.location,
+			isOpen: true
 		})
-		this.handleToggle()
+		//this.handleToggle()
 	}
 
 	onMapClick = (props) => {
 			this.setState({
 				selectedPlace: {},
 				zoom: this.state.defaultZoom,
-				center: this.state.defaultCenter
+				center: this.state.defaultCenter,
+				isOpen: false
 			})
 			//this.handleToggle()
 	}
 
 
   render() {
-		console.log(this.state.locations)
+		//console.log(this.state.locations)
     return (
       <div className="App">
 				<div className="Container">
@@ -119,7 +123,6 @@ class App extends Component {
 							onMarkerClick={this.onMarkerClick}
 							selectedPlace={this.state.selectedPlace}
 							isOpen={this.state.isOpen}
-							zoom={this.state.zoom}
 						/>
 					</div>
       	</div>
