@@ -10,14 +10,13 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 				const GoogleMapContainer = withGoogleMap(props => (
 					<GoogleMap
 					defaultCenter={this.props.center}
-					//center={this.props.center}
-					//defaultZoom={this.props.defaultZoom}
 					zoom= {this.props.zoom}
 					onClick={this.props.onMapClick}
 					>
 						{this.props.locations.map(location =>
 							<Marker
 								key={location.id}
+								icon={{./../images/Coffee_1.png}}
 								onClick={(e) => this.props.onMarkerClick(location)}
 								position={location.location}
 								title={location.name}
@@ -29,6 +28,7 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 								<InfoWindow
 									//position
 									className='infowindow'
+									maxWidth='400'
 									onCloseClick={this.props.handleToggle}
 								>
 									<div>
