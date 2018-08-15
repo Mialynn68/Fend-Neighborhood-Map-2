@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
+//import markerIcon from './images/Coffee_1.png'
 /*global google*/
 
 		class MyMap extends Component {
@@ -16,7 +17,8 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 						{this.props.locations.map(location =>
 							<Marker
 								key={location.id}
-								icon={{./../images/Coffee_1.png}}
+								//icon={markerIcon}
+								icon='./images/Coffee_1.png'
 								onClick={(e) => this.props.onMarkerClick(location)}
 								position={location.location}
 								title={location.name}

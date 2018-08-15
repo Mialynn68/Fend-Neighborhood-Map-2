@@ -125,7 +125,7 @@ class App extends Component {
       <div className="App">
 				<div className="Container">
 					<header className="header">
-						<h1 className="title">The Marxen Map</h1>
+						<h1 className="title">Coffee Places in HafenCity Hamburg</h1>
 					</header>
 					<div className="main">
 						<Sidebar
