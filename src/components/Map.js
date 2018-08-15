@@ -5,11 +5,11 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 		class MyMap extends Component {
 
 			render() {
-			console.log(this.props.selectedPlace)
+			//console.log(this.props.selectedPlace)
 
-				const GoogleMapExample = withGoogleMap(props => (
+				const GoogleMapContainer = withGoogleMap(props => (
 					<GoogleMap
-					defaultCenter={this.props.defaultCenter}
+					defaultCenter={this.props.center}
 					//center={this.props.center}
 					//defaultZoom={this.props.defaultZoom}
 					zoom= {this.props.zoom}
@@ -35,7 +35,6 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 										<h3 className='infowindow-heading'>{this.props.selectedPlace.name}</h3>
 										<hr/>
 										<div className='infowindow-content'>
-											<p className='infowindow-content-heading'>Address:</p>
 											{this.props.selectedPlace.location && this.props.selectedPlace.location.address && this.props.selectedPlace.location.city &&
 											<p className='infowindow-content-text'>{this.props.selectedPlace.location.address}<br/>{this.props.selectedPlace.location.city}
 											</p>
@@ -51,7 +50,7 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 
 					return (
 						<div className='map'>
-							<GoogleMapExample
+							<GoogleMapContainer
 								containerElement={<div style={{height: '100vh', width: '80vw', position: 'absolute', right: '0'}}/>}
 								mapElement={<div style={{height: '100%'}}/>}
 							/>
