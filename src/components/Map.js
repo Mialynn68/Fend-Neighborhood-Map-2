@@ -53,8 +53,8 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 					return (
 						<div className='map'>
 							<GoogleMapContainer
-								containerElement={<div style={{height: '100vh', width: '80vw', position: 'absolute', right: '0'}}/>}
-								mapElement={<div style={{height: '100%'}}/>}
+								containerElement={<div className='map-container'/>}
+								mapElement={<div className='map-element'/>}
 							/>
 						</div>
 					)

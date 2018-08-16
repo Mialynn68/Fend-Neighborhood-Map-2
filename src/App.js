@@ -123,10 +123,10 @@ class App extends Component {
 		console.log(this.state.center)
     return (
       <div className="App">
-				<div className="Container">
-					<header className="header">
+				<div className="container">
+					{/*<header className="header">
 						<h1 className="title">Coffee Places in HafenCity Hamburg</h1>
-					</header>
+					</header>*/}
 					<div className="main">
 						<Sidebar
 						 	locations={this.state.locations}

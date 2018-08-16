@@ -25,6 +25,36 @@ class Sidebar extends Component {
   render() {
     return (
 			<div className="sidebar">
+				<div className="sidebar-inner">
+					<div className="sidebar-header">
+						<h1>Coffee Places</h1>
+						<h2>in Hamburg HarbourCity</h2>
+					</div>
+					<div className="sidebar-search">
+						<input
+							type="text"
+							placeholder="Search Locations"
+							value={this.state.query}
+							onChange={(event) => this.updateSearch(event.target.value)}
+						/>
+					</div>
+					<div className='sidebar-flex-scroll'>
+						<ul className="locations-list">
+							{this.props.locations.map((location) => (
+								<li
+									key={location.id}
+									//onClick={this.props.onListitemClick}
+									onClick={(e) => this.props.onListitemClick(location)}
+									>{location.name}
+								</li>
+							))}
+						</ul>
+					</div>
+				</div>
+			</div>
+
+
+		/*	<div className="sidebar">
 				<div className="search">
 					<input
 						type="text"
@@ -34,7 +64,7 @@ class Sidebar extends Component {
 					/>
 				</div>
 				<div className='locations-list-container'>
-					<ul className="locations">
+					<ul className="locations-list">
 						{this.props.locations.map((location) => (
 							<li
 								key={location.id}
@@ -45,7 +75,7 @@ class Sidebar extends Component {
 						))}
 					</ul>
 				</div>
-			</div>
+			</div>*/
     );
   }
 }
