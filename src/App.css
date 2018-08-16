@@ -5,7 +5,7 @@ body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;;
+	box-sizing: border-box;
 }
 
 h1 {
@@ -28,13 +28,17 @@ h2 {
 }
 
 .sidebar {
-	width: 25%;
-	height: 100%;
-	background: #d9cfb8;
-	position: relative;
+
 }
 
-.sidebar-inner {
+#menu {
+	width: 25vw;
+	height: 100%;
+	position: fixed;
+	left: 0;
+	top: 150px;
+	background: #cfc4a8;
+	transition: transform .3s cubic-bezier(0, .52, 0, 1);
 	display:-webkit-box;
     display:flex;
     -webkit-box-orient:vertical;
@@ -42,16 +46,28 @@ h2 {
     height:100%;
 }
 
+#menu.hide {
+	transform: translate3d(-25vw, 0, 0);
+}
+
+#menu.show {
+	transform: translate3d(0vw, 0, 0);
+	overflow: hidden;
+}
+
 .sidebar-header {
-	background: #b5ab92;
+	width: 25vw;
+	height: 150px;
+	background: #aa9a72;
 	padding: 50px 30px 50px 30px;
+	box-sizing: border-box;
 }
 
 .sidebar-search {
 	padding: 18px;
 }
 
-.sidebar-inner .sidebar-flex-scroll {
+#menu .sidebar-flex-scroll {
 	overflow-y:scroll;
       min-height:0;
       -webkit-box-flex:1;
@@ -70,7 +86,17 @@ h2 {
 
 .locations-list li {
 	padding: 7px 0;
+}
+
+.locations-list li a {
+	cursor: pointer;
 	color: #796941;
+	text-decoration: none;
+}
+
+.locations-list li a:hover {
+	cursor: pointer;
+	color: #44391e;
 }
 
 input {
@@ -78,13 +104,13 @@ input {
 	margin: 0 auto;
 	padding: 20px;
 	border: none;
-	width: 100%;
+	width: 19vw;
 	border-radius: 12px;
 
 }
 
 .map {
-	width: 50%;
+	width: 75vw;
 	height: 100vh;
 	position: absolute;
 	right: 0;
@@ -113,14 +139,6 @@ input {
 	   height: 60px;
 	   padding-top: 25px;
 	   color: white;
-	 }
-
-	 .map {
-		 width: 80%;
-	 }
-
-	 .map-container {
-	 		width: 100%;
 	 }
 
 	 .sidebar {

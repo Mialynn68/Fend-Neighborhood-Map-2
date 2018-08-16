@@ -1,81 +1,55 @@
 import React, { Component } from 'react'
+import Menu from './Menu'
 
 class Sidebar extends Component {
-	constructor(props) {
-		super(props);
+
+	/*constructor(props, context) {
+		super(props, context);
 		this.state = {
-			//value: 'select',
-			query: '',
+			visible: false
 		}
-		this.updateSearch = this.updateSearch.bind(this);
-		//this.handleSubmit = this.handleSubmit.bind(this);
+		this.toggleMenu = this.toggleMenu.bind(this);
+		this.handleMouseDown = this.handleMouseDown.bind(this);
 	}
 
-	updateSearch(query) {
-		this.setState({query: query})
-		this.props.filterLocations(query)
+	handleMouseDown(e) {
+		this.toggleMenu()
+		console.log('clicked')
+		e.stopPropagation()
 	}
 
-	/*handleSubmit(event) {
-		event.preventDefault();
-		var value = this.state.value;
-		this.props.onFilter(value);
+	toggleMenu() {
+		this.setState({
+			visible: !this.state.visible
+		})
 	}*/
 
+
   render() {
+		//console.log(this.state.visible)
     return (
-			<div className="sidebar">
-				<div className="sidebar-inner">
-					<div className="sidebar-header">
-						<h1>Coffee Places</h1>
-						<h2>in Hamburg HarbourCity</h2>
-					</div>
-					<div className="sidebar-search">
-						<input
-							type="text"
-							placeholder="Search Locations"
-							value={this.state.query}
-							onChange={(event) => this.updateSearch(event.target.value)}
-						/>
-					</div>
-					<div className='sidebar-flex-scroll'>
-						<ul className="locations-list">
-							{this.props.locations.map((location) => (
-								<li
-									key={location.id}
-									//onClick={this.props.onListitemClick}
-									onClick={(e) => this.props.onListitemClick(location)}
-									>{location.name}
-								</li>
-							))}
-						</ul>
-					</div>
+			<div
+				className="sidebar"
+
+				>
+				<div className="sidebar-header">
+					<h1>Coffee Places</h1>
+					<h2>in Hamburg HarbourCity</h2>
+					<button
+						id="burger-button"
+						onMouseDown={this.props.handleMouseDown}
+						>
+					</button>
 				</div>
+				<Menu
+					locations={this.props.locations}
+					filterLocations={this.props.filterLocations}
+					onListitemClick={this.props.onListitemClick}
+					isOpen={this.props.isOpen}
+					//handleMouseDown={this.props.handleMouseDown}
+					visible={this.props.visible}
+				/>
 			</div>
-
-
-		/*	<div className="sidebar">
-				<div className="search">
-					<input
-						type="text"
-						placeholder="Search Locations"
-						value={this.state.query}
-						onChange={(event) => this.updateSearch(event.target.value)}
-					/>
-				</div>
-				<div className='locations-list-container'>
-					<ul className="locations-list">
-						{this.props.locations.map((location) => (
-							<li
-								key={location.id}
-								//onClick={this.props.onListitemClick}
-								onClick={(e) => this.props.onListitemClick(location)}
-								>{location.name}
-							</li>
-						))}
-					</ul>
-				</div>
-			</div>*/
     );
   }
 }

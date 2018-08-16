@@ -16,8 +16,8 @@ var params = {
 
 class App extends Component {
 
-	constructor(props) {
-		super(props)
+	constructor(props, context) {
+		super(props, context)
 		this.state = {
 			initialLocations: [],
 			locations: [],
@@ -27,8 +27,15 @@ class App extends Component {
 			center: {},
 			defaultZoom: 16,
 			zoom: '',
-			isOpen: false
+			isOpen: false,
+			visible: false
 		}
+		this.filterLocations = this.filterLocations.bind(this);
+		this.onMarkerClick = this.onMarkerClick.bind(this);
+		this.onListitemClick = this.onListitemClick.bind(this);
+		this.onMapClick = this.onMapClick.bind(this);
+		this.handleMouseDown = this.handleMouseDown.bind(this);
+		this.toggleMenu = this.toggleMenu.bind(this);
 	}
 
 	getLocations = () => {
@@ -58,16 +65,6 @@ class App extends Component {
 		this.setState({zoom: this.state.defaultZoom})
 	}
 
-	/*filterLocations = (value) => {
-		if (value !== 'select' && value !== 'all') {
-			const result = this.state.initialLocations.filter(location =>
-			location.categories.id === '4bf58dd8d48988d1c7941735')
-			this.setState({ locations: result })
-		} else {
-			this.getLocations()
-		}
-	}*/
-
 	filterLocations = (query) => {
 		if (query) {
 		this.setState((prevState, props) => ({
@@ -78,13 +75,6 @@ class App extends Component {
 			this.getLocations()
 		}
 	}
-
-	/*handleToggle () {
-		this.state.isOpen &&
-		this.setState({isOpen: false})
-		this.state.isOpen === false &&
-		this.setState({isOpen: true})
-	}*/
 
 	onMarkerClick = (props) => {
 		this.setState({
@@ -97,7 +87,7 @@ class App extends Component {
 		//this.handleToggle()
 	}
 
-	onListitemClick = (props) => {
+	onListitemClick = (props, e) => {
 		this.setState({
 			selectedPlace: props,
 			position: props.location,
@@ -105,7 +95,9 @@ class App extends Component {
 			center: props.location,
 			isOpen: true
 		})
-		//this.handleToggle()
+		this.toggleMenu()
+		console.log('clicked')
+		//e.stopPropagation()
 	}
 
 	onMapClick = (props) => {
@@ -118,9 +110,21 @@ class App extends Component {
 			//this.handleToggle()
 	}
 
+	handleMouseDown(e) {
+		this.toggleMenu()
+		console.log('clicked')
+		//e.stopPropagation()
+	}
+
+	toggleMenu() {
+		this.setState({
+			visible: !this.state.visible
+		})
+	}
+
 
   render() {
-		console.log(this.state.center)
+		//console.log(this.state.center)
     return (
       <div className="App">
 				<div className="container">
@@ -132,7 +136,10 @@ class App extends Component {
 						 	locations={this.state.locations}
 							filterLocations={this.filterLocations}
 							onListitemClick={this.onListitemClick}
+							handleMouseDown={this.handleMouseDown}
+							toggleMenu={this.toggleMenu}
 							isOpen={this.state.isOpen}
+							visible={this.state.visible}
 						/>
 						<Map
 							locations={this.state.locations}
