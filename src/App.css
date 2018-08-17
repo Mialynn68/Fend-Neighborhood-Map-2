@@ -22,45 +22,66 @@ h2 {
 
 .main {
 	display: flex;
+	flex-direction: column;
 	position: relative;
 	height: 100vh;
 	width: 100vw;
 }
 
 .sidebar {
-
+	display: flex;
+	flex-direction: column;
+	width: 100vw;
+	height: 100vh;
+	z-index: 100;
 }
 
 #menu {
-	width: 25vw;
+	box-sizing: border-box;
+	width: 100vw;
 	height: 100%;
 	position: fixed;
 	left: 0;
-	top: 150px;
+	/*top: 150px;*/
 	background: #cfc4a8;
 	transition: transform .3s cubic-bezier(0, .52, 0, 1);
 	display:-webkit-box;
     display:flex;
     -webkit-box-orient:vertical;
     flex-direction:column;
-    height:100%;
 }
 
 #menu.hide {
-	transform: translate3d(-25vw, 0, 0);
+	transform: translate3d(0, -100vh, 0);
 }
 
 #menu.show {
-	transform: translate3d(0vw, 0, 0);
+	transform: translate3d(0, 100px, 0);
 	overflow: hidden;
 }
 
 .sidebar-header {
-	width: 25vw;
-	height: 150px;
+	width: 100vw;
+	height: 100px;
 	background: #aa9a72;
-	padding: 50px 30px 50px 30px;
+	padding: 20px;
 	box-sizing: border-box;
+	z-index: 200;
+}
+
+#burger-button {
+	float: right;
+	position: relative;
+	top: -40px;
+	cursor: pointer;
+}
+
+.burger {
+	width: 30px;
+    height: 4px;
+    background-color: #69531e;
+    margin: 4px 0;
+		border-radius: 2px;
 }
 
 .sidebar-search {
@@ -104,17 +125,16 @@ input {
 	margin: 0 auto;
 	padding: 20px;
 	border: none;
-	width: 19vw;
+	width: 80vw;
 	border-radius: 12px;
-
 }
 
 .map {
-	width: 75vw;
+	box-sizing: border-box;
+	width: 100vw;
 	height: 100vh;
-	position: absolute;
-	right: 0;
-	bottom: 0;
+	position: relative;
+	/*padding-top: 100px;*/
 }
 
 .map-container {
@@ -129,11 +149,16 @@ input {
 }
 
 /*
- * MEDIS QUERIES
+ * MEDIA QUERIES
  */
 
- @media only screen and (min-width: 1100px)
+@media only screen and (min-width: 1100px)
  {
+
+	 .main {
+	 	flex-direction: row;
+	 }
+
 	 .header {
 	   background-color: #222;
 	   height: 60px;
@@ -142,19 +167,53 @@ input {
 	 }
 
 	 .sidebar {
-			display: flex;
-			flex-direction: column;
+		 width: 25vw;
+		 height: 100%;
 	 }
 
-	 .locations-list {
+	 #burger-button {
+		 display: none;
+	 }
+
+	 .sidebar-header {
+	 	width: 25vw;
+	 	height: 150px;
+	 	padding: 50px 30px 50px 30px;
+	 }
+
+	 input {
+		 width: 19vw;
+	 }
+
+	 #menu {
+			width: 25vw;
+			position: relative;
+			background: #cfc4a8;
+			transition: none;
+			display:-webkit-box;
+			display:flex;
+			-webkit-box-orient:vertical;
+			flex-direction:column;
+	 }
+
+		#menu.hide {
+			transform: translate3d(0vw, 0, 0);
+		}
+
+		#menu.show {
+			transform: translate3d(0vw, 0, 0);
+			overflow: hidden;
+		}
+
+		.locations-list {
 		 overflow-y:scroll;
-	    min-height:0;
-	    -webkit-box-flex:1;
-	    flex:1;
-	 }
+		  min-height:0;
+		  -webkit-box-flex:1;
+		  flex:1;
+		}
 
-
-
-
-
-	}
+		.map {
+			width: 75vw;
+		padding: 0;
+		}
+}

@@ -22,10 +22,9 @@ class App extends Component {
 			initialLocations: [],
 			locations: [],
 			selectedPlace: {},
-			//defaultCenter: {lat: 53.166083, lng: 9.918994},
 			defaultCenter: {lat: 53.542913, lng: 9.995835},
 			center: {},
-			defaultZoom: 16,
+			defaultZoom: 15,
 			zoom: '',
 			isOpen: false,
 			visible: false
@@ -80,7 +79,7 @@ class App extends Component {
 		this.setState({
 			selectedPlace: props,
 			position: props.position,
-			zoom: 18,
+			zoom: 17,
 			center: props.location,
 			isOpen: true
 		})
@@ -91,7 +90,7 @@ class App extends Component {
 		this.setState({
 			selectedPlace: props,
 			position: props.location,
-			zoom: 18,
+			zoom: 17,
 			center: props.location,
 			isOpen: true
 		})

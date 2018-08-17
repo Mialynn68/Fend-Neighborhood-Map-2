@@ -10,9 +10,10 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 
 				const GoogleMapContainer = withGoogleMap(props => (
 					<GoogleMap
-					defaultCenter={this.props.center}
-					zoom= {this.props.zoom}
-					onClick={this.props.onMapClick}
+						role="application"
+						defaultCenter={this.props.center}
+						zoom= {this.props.zoom}
+						onClick={this.props.onMapClick}
 					>
 						{this.props.locations.map(location =>
 							<Marker
