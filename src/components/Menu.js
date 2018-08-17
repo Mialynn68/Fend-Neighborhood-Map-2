@@ -40,10 +40,14 @@ class Menu extends Component {
 				<div className='sidebar-flex-scroll'>
 					<ul className="locations-list">
 						{this.props.locations.map((location) => (
-							<li key={location.id}>
+							<li
+								key={location.id}
+
+								>
 								<a
+								onKeyDown={e => e.keyCode !== 13 || e.target.click()}
 								onClick={(e) => this.props.onListitemClick(location)}
-								//onMouseDown={this.props.handleMouseDown}
+								tabIndex='0'
 								>{location.name}
 								</a>
 							</li>

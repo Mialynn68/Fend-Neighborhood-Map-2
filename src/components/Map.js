@@ -18,8 +18,11 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 						{this.props.locations.map(location =>
 							<Marker
 								key={location.id}
-								//icon={markerIcon}
 								icon='./images/Coffee_1.png'
+								className='marker'
+								alt='marker'
+								tabIndex='0'
+								onKeyDown={e => e.keyCode !== 13 || e.target.click()}
 								onClick={(e) => this.props.onMarkerClick(location)}
 								position={location.location}
 								title={location.name}

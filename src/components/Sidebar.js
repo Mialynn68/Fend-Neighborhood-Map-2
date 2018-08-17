@@ -12,12 +12,6 @@ class Sidebar extends Component {
 						<h1>Coffee Places</h1>
 						<h2>in Hamburg HarbourCity</h2>
 					</div>
-					{/*<button
-						id="burger-button"
-						onMouseDown={this.props.handleMouseDown}
-						>
-					</button>*/}
-
 					<div
 						id="burger-button"
 						onMouseDown={this.props.handleMouseDown}
@@ -32,7 +26,6 @@ class Sidebar extends Component {
 					filterLocations={this.props.filterLocations}
 					onListitemClick={this.props.onListitemClick}
 					isOpen={this.props.isOpen}
-					//handleMouseDown={this.props.handleMouseDown}
 					visible={this.props.visible}
 				/>
 			</div>

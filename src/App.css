@@ -9,13 +9,13 @@ body {
 }
 
 h1 {
-	color: #69531e;
+	color: #634e1c;
 	font-size: 26px;
 	margin: 0;
 }
 
 h2 {
-	color: #69531e;
+	color: #634e1c;
 	font-size: 14px;
 	margin: 0;
 }
@@ -43,7 +43,7 @@ h2 {
 	position: fixed;
 	left: 0;
 	/*top: 150px;*/
-	background: #cfc4a8;
+	background: #e3dece;
 	transition: transform .3s cubic-bezier(0, .52, 0, 1);
 	display:-webkit-box;
     display:flex;
@@ -63,7 +63,7 @@ h2 {
 .sidebar-header {
 	width: 100vw;
 	height: 100px;
-	background: #aa9a72;
+	background: #cfc4a5;
 	padding: 20px;
 	box-sizing: border-box;
 	z-index: 200;
@@ -111,13 +111,14 @@ h2 {
 
 .locations-list li a {
 	cursor: pointer;
-	color: #796941;
+	color: #6f603e;
 	text-decoration: none;
 }
 
 .locations-list li a:hover {
 	cursor: pointer;
 	color: #44391e;
+	text-decoration: underline;
 }
 
 input {
@@ -146,6 +147,10 @@ input {
 	width: 100%;
 	height: 100%;
 	position: relative;
+}
+
+.marker:focus {
+	outline: -webkit-focus-ring-color auto 5px;
 }
 
 /*
@@ -188,7 +193,6 @@ input {
 	 #menu {
 			width: 25vw;
 			position: relative;
-			background: #cfc4a8;
 			transition: none;
 			display:-webkit-box;
 			display:flex;
