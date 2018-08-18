@@ -27,7 +27,8 @@ class App extends Component {
 			defaultZoom: 15,
 			zoom: '',
 			isOpen: false,
-			visible: false
+			visible: false,
+			selectedPhoto: {}
 		}
 		this.filterLocations = this.filterLocations.bind(this);
 		this.onMarkerClick = this.onMarkerClick.bind(this);
@@ -35,6 +36,7 @@ class App extends Component {
 		this.onMapClick = this.onMapClick.bind(this);
 		this.handleMouseDown = this.handleMouseDown.bind(this);
 		this.toggleMenu = this.toggleMenu.bind(this);
+		this.selectPhoto = this.selectPhoto.bind(this);
 	}
 
 	getLocations = () => {
@@ -49,14 +51,21 @@ class App extends Component {
 	}
 
 	/*getLocations = () => {
-		fetch('https://api.foursquare.com/v2/venues/search?client_id=1EUBQBYMRHC4IKAOA3CW2NBLYXHIIBA3I0N10LJMO5BDPWA1&client_secret=DUSYNTNDPRLWODFDI04J1OIBWLD0REWOMUXBH1040V3MT0YR&ll=53.542913,9.995835&radius=2000&v=20180810')
+		fetch('https://api.foursquare.com/v2/venues/4df85cc1d4c02ad734186f0f?client_id=1EUBQBYMRHC4IKAOA3CW2NBLYXHIIBA3I0N10LJMO5BDPWA1&client_secret=DUSYNTNDPRLWODFDI04J1OIBWLD0REWOMUXBH1040V3MT0YR&v=20180810')
+		//fetch('https://api.foursquare.com/v2/venues/search?client_id=1EUBQBYMRHC4IKAOA3CW2NBLYXHIIBA3I0N10LJMO5BDPWA1&client_secret=DUSYNTNDPRLWODFDI04J1OIBWLD0REWOMUXBH1040V3MT0YR&ll=53.542913,9.995835&radius=2000&v=20180810')
   	.then(function(response) {
     return response.json();
   	})
   	.then(function(myJson) {
-    //console.log(myJson);
+    console.log(myJson);
   });
 }*/
+
+/*4df85cc1d4c02ad734186f0f
+59899441c4df1d5dfaf41117
+4be5739e910020a172f2d214*/
+
+
 
 	componentDidMount () {
 		this.getLocations()
@@ -95,7 +104,8 @@ class App extends Component {
 			isOpen: true
 		})
 		this.toggleMenu()
-		console.log('clicked')
+		this.selectPhoto(props)
+		//console.log('clicked')
 		//e.stopPropagation()
 	}
 
@@ -121,9 +131,23 @@ class App extends Component {
 		})
 	}
 
+	selectPhoto = (location) => {
+		//console.log(location)
+		var foursquareId = location.id;
+		fetch('https://api.foursquare.com/v2/venues/' + foursquareId +'?client_id=1EUBQBYMRHC4IKAOA3CW2NBLYXHIIBA3I0N10LJMO5BDPWA1&client_secret=DUSYNTNDPRLWODFDI04J1OIBWLD0REWOMUXBH1040V3MT0YR&v=20180810')
+	.then((response) => {
+		return response.json()
+		console.log(response.json);
+	})
+	//.then((responseJson) => {
+		//var selectedPhoto = responseJson.response.venue.bestPhoto;
+		//console.log(selectedPhoto);
+		//this.setState({selectedPhoto: selectedPhoto})
+	//})
+	}
 
   render() {
-		//console.log(this.state.center)
+		//console.log(this.state.selectedPhoto)
     return (
       <div className="App">
 				<div className="container">
@@ -150,6 +174,7 @@ class App extends Component {
 							onMarkerClick={this.onMarkerClick}
 							selectedPlace={this.state.selectedPlace}
 							isOpen={this.state.isOpen}
+							selectedPhoto={this.state.selectedPhoto}
 						/>
 					</div>
       	</div>
