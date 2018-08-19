@@ -3,7 +3,7 @@ import './App.css';
 import Map from './components/Map.js'
 import Sidebar from './components/Sidebar.js'
 
-var foursquare = require('react-foursquare')({
+/*var foursquare = require('react-foursquare')({
   clientID: '1EUBQBYMRHC4IKAOA3CW2NBLYXHIIBA3I0N10LJMO5BDPWA1',
   clientSecret: 'DUSYNTNDPRLWODFDI04J1OIBWLD0REWOMUXBH1040V3MT0YR'
 });
@@ -12,7 +12,7 @@ var params = {
   "ll": "53.542913, 9.995835",
 	"radius": "500",
 	"categoryId": "4bf58dd8d48988d16d941735"
-};
+};*/
 
 class App extends Component {
 
@@ -30,6 +30,8 @@ class App extends Component {
 			visible: false,
 			selectedPhoto: {}
 		}
+		this.initialLocations = []
+
 		this.filterLocations = this.filterLocations.bind(this);
 		this.onMarkerClick = this.onMarkerClick.bind(this);
 		this.onListitemClick = this.onListitemClick.bind(this);
@@ -39,7 +41,7 @@ class App extends Component {
 		this.selectPhoto = this.selectPhoto.bind(this);
 	}
 
-	getLocations = () => {
+	/*getLocations = () => {
 		foursquare.venues.getVenues(params)
 			.then(res=> {
 				this.setState({initialLocations: res.response.venues})
@@ -48,24 +50,59 @@ class App extends Component {
 			.catch(res=> {
 				alert("Sorry, Foursquare locations could not be loaded")
 			})
+	}*/
+
+	getLocations = () => {
+
+		var locationIds = [
+			"4df85cc1d4c02ad734186f0f",
+			"59899441c4df1d5dfaf41117",
+			"4be5739e910020a172f2d214",
+			"4df49bc145dd4e2693449325",
+			"4bbb2ad57421a5939f79c440",
+			"516ac74ae4b07e9c195d9969",
+			"5b54919b95d986002c5b0014",
+			"534d1113498ea58ddf403ea9",
+			"4b0cf017f964a520b04223e3",
+			"4b9f712bf964a520e62237e3",
+			"4d0c8a76e0b98cfa88cfd593",
+			"4b4f0966f964a52008f926e3",
+			"4e170eacaeb7e76b4f2375d7"
+		]
+
+		locationIds.map(id => {
+			//console.log(id)
+			fetch('https://api.foursquare.com/v2/venues/'+id+'?client_id=1EUBQBYMRHC4IKAOA3CW2NBLYXHIIBA3I0N10LJMO5BDPWA1&client_secret=DUSYNTNDPRLWODFDI04J1OIBWLD0REWOMUXBH1040V3MT0YR&v=20180810')
+	  	.then(response => response.json())
+	  	.then(result =>
+				this.onSetResult(result, id));
+		//console.log(this.initialLocations)
+		})
+		this.setState({
+			initialLocations: this.initialLocations
+		})
 	}
 
-	/*getLocations = () => {
-		fetch('https://api.foursquare.com/v2/venues/4df85cc1d4c02ad734186f0f?client_id=1EUBQBYMRHC4IKAOA3CW2NBLYXHIIBA3I0N10LJMO5BDPWA1&client_secret=DUSYNTNDPRLWODFDI04J1OIBWLD0REWOMUXBH1040V3MT0YR&v=20180810')
-		//fetch('https://api.foursquare.com/v2/venues/search?client_id=1EUBQBYMRHC4IKAOA3CW2NBLYXHIIBA3I0N10LJMO5BDPWA1&client_secret=DUSYNTNDPRLWODFDI04J1OIBWLD0REWOMUXBH1040V3MT0YR&ll=53.542913,9.995835&radius=2000&v=20180810')
-  	.then(function(response) {
-    return response.json();
-  	})
-  	.then(function(myJson) {
-    console.log(myJson);
-  });
-}*/
+	onSetResult = (result, key) => {
+		//console.log(key)
+		//localStorage.setItem(key, JSON.stringify(result))
+		this.initialLocations.push(result)
+		console.log(this.initialLocations)
+	}
 
-/*4df85cc1d4c02ad734186f0f
-59899441c4df1d5dfaf41117
-4be5739e910020a172f2d214*/
-
-
+	/*"4df85cc1d4c02ad734186f0f",
+	"59899441c4df1d5dfaf41117",
+	"4be5739e910020a172f2d214",
+	"4df49bc145dd4e2693449325",
+	"4bbb2ad57421a5939f79c440",
+	"516ac74ae4b07e9c195d9969",
+	"5b54919b95d986002c5b0014",
+	"534d1113498ea58ddf403ea9",
+	"4b0cf017f964a520b04223e3",
+	"4b9f712bf964a520e62237e3",
+	"4d0c8a76e0b98cfa88cfd593",
+	"4b4f0966f964a52008f926e3",
+	"4e170eacaeb7e76b4f2375d7"*/
 
 	componentDidMount () {
 		this.getLocations()
@@ -82,6 +119,21 @@ class App extends Component {
 		} else {
 			this.getLocations()
 		}
+	}
+
+	selectPhoto = (location) => {
+		//console.log(location)
+		var foursquareId = location.id;
+		fetch('https://api.foursquare.com/v2/venues/' + foursquareId +'?client_id=1EUBQBYMRHC4IKAOA3CW2NBLYXHIIBA3I0N10LJMO5BDPWA1&client_secret=DUSYNTNDPRLWODFDI04J1OIBWLD0REWOMUXBH1040V3MT0YR&v=20180810')
+	.then((response) => {
+		return response.json()
+		console.log(response.json);
+	})
+	.then((responseJson) => {
+		var selectedPhoto = responseJson.response.venue.bestPhoto;
+		console.log(selectedPhoto);
+		this.setState({selectedPhoto: selectedPhoto})
+	})
 	}
 
 	onMarkerClick = (props) => {
@@ -104,7 +156,7 @@ class App extends Component {
 			isOpen: true
 		})
 		this.toggleMenu()
-		//this.selectPhoto(props)
+		this.selectPhoto(props)
 		//console.log('clicked')
 		//e.stopPropagation()
 	}
@@ -121,7 +173,7 @@ class App extends Component {
 
 	handleMouseDown(e) {
 		this.toggleMenu()
-		//console.log('clicked')
+		console.log('clicked')
 		//e.stopPropagation()
 	}
 
@@ -131,23 +183,8 @@ class App extends Component {
 		})
 	}
 
-	selectPhoto = (location) => {
-		//console.log(location)
-		var foursquareId = location.id;
-		fetch('https://api.foursquare.com/v2/venues/' + foursquareId +'?client_id=1EUBQBYMRHC4IKAOA3CW2NBLYXHIIBA3I0N10LJMO5BDPWA1&client_secret=DUSYNTNDPRLWODFDI04J1OIBWLD0REWOMUXBH1040V3MT0YR&v=20180810')
-	.then((response) => {
-		return response.json()
-		//console.log(response.json);
-	})
-	.then((responseJson) => {
-		var selectedPhoto = responseJson.response.venue.bestPhoto;
-		//console.log(selectedPhoto);
-		this.setState({selectedPhoto: selectedPhoto})
-	})
-	}
-
   render() {
-		//console.log(this.state.selectedPhoto)
+		//console.log(this.state.initialLocations)
     return (
       <div className="App">
 				<div className="container">
@@ -166,6 +203,7 @@ class App extends Component {
 						/>
 						<Map
 							locations={this.state.locations}
+							//defaultCenter={this.state.defaultCenter}
 							center={this.state.center}
 							zoom={this.state.zoom}
 							handleToggle={this.handleToggle}

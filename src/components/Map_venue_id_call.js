@@ -28,7 +28,7 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 
 
 			render() {
-				//console.log(this.props.selectedPhoto);
+				console.log(this.props.selectedPhoto);
 				//console.log(this.state.selectedPhoto.prefix + this.state.selectedPhoto.width + 'x' + this.state.selectedPhoto.height + this.state.selectedPhoto.suffix)
 
 				const GoogleMapContainer = withGoogleMap(props => (
