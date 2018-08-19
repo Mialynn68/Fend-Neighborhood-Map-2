@@ -150,15 +150,25 @@ input {
 }
 
 .infowindow-line {
-	margin: 0;
+	margin: 5px;
 }
 
-.infowindow {
-	width: 300px;
+.photo {
+	margin-top: 10px;
+	width: 250px;
 }
 
-.marker:focus {
-	outline: -webkit-focus-ring-color auto 5px;
+.skip-link {
+	position: absolute;
+	bottom: 20px;
+	right: 60px;
+	color: #44391e;
+	z-index: 500;
+	text-decoration: none;
+}
+
+.skip-link:hover {
+	text-decoration: underline;
 }
 
 /*

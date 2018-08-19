@@ -50,23 +50,6 @@ class App extends Component {
 			})
 	}
 
-	/*getLocations = () => {
-		fetch('https://api.foursquare.com/v2/venues/4df85cc1d4c02ad734186f0f?client_id=1EUBQBYMRHC4IKAOA3CW2NBLYXHIIBA3I0N10LJMO5BDPWA1&client_secret=DUSYNTNDPRLWODFDI04J1OIBWLD0REWOMUXBH1040V3MT0YR&v=20180810')
-		//fetch('https://api.foursquare.com/v2/venues/search?client_id=1EUBQBYMRHC4IKAOA3CW2NBLYXHIIBA3I0N10LJMO5BDPWA1&client_secret=DUSYNTNDPRLWODFDI04J1OIBWLD0REWOMUXBH1040V3MT0YR&ll=53.542913,9.995835&radius=2000&v=20180810')
-  	.then(function(response) {
-    return response.json();
-  	})
-  	.then(function(myJson) {
-    console.log(myJson);
-  });
-}*/
-
-/*4df85cc1d4c02ad734186f0f
-59899441c4df1d5dfaf41117
-4be5739e910020a172f2d214*/
-
-
-
 	componentDidMount () {
 		this.getLocations()
 		this.setState({center: this.state.defaultCenter})
@@ -87,24 +70,24 @@ class App extends Component {
 	onMarkerClick = (props) => {
 		this.setState({
 			selectedPlace: props,
-			position: props.position,
-			zoom: 17,
+			//position: props.position,
+			zoom: 16,
 			center: props.location,
 			isOpen: true
 		})
-		//this.selectPhoto(props)
+		this.selectPhoto(props)
 	}
 
 	onListitemClick = (props, e) => {
 		this.setState({
 			selectedPlace: props,
-			position: props.location,
-			zoom: 17,
+			//position: props.location,
+			zoom: 16,
 			center: props.location,
 			isOpen: true
 		})
 		this.toggleMenu()
-		//this.selectPhoto(props)
+		this.selectPhoto(props)
 	}
 
 	onMapClick = (props) => {
@@ -138,11 +121,9 @@ class App extends Component {
 		fetch('https://api.foursquare.com/v2/venues/' + foursquareId +'?client_id=1EUBQBYMRHC4IKAOA3CW2NBLYXHIIBA3I0N10LJMO5BDPWA1&client_secret=DUSYNTNDPRLWODFDI04J1OIBWLD0REWOMUXBH1040V3MT0YR&v=20180810')
 	.then((response) => {
 		return response.json()
-		//console.log(response.json);
 	})
 	.then((responseJson) => {
 		var selectedPhoto = responseJson.response.venue.bestPhoto;
-		//console.log(selectedPhoto);
 		this.setState({selectedPhoto: selectedPhoto})
 	})
 	.catch((response) => {
@@ -151,14 +132,10 @@ class App extends Component {
 	}
 
   render() {
-		//console.log(this.state.selectedPhoto)
     return (
       <div className="App">
 				<div className="container">
-					{/*<header className="header">
-						<h1 className="title">Coffee Places in HafenCity Hamburg</h1>
-					</header>*/}
-					<div className="main">
+					<div className="main" id="main">
 						<Sidebar
 						 	locations={this.state.locations}
 							filterLocations={this.filterLocations}
@@ -168,6 +145,10 @@ class App extends Component {
 							isOpen={this.state.isOpen}
 							visible={this.state.visible}
 						/>
+						<a
+							href="#main"
+							className="skip-link">Skip Map
+						</a>
 						<Map
 							locations={this.state.locations}
 							center={this.state.center}

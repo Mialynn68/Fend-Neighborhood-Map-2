@@ -18,7 +18,6 @@ class Menu extends Component {
 	// sidebar toggling basics from https://www.kirupa.com/react/smooth_sliding_menu_react_motion.htm
 
 	render () {
-		//console.log(this.props.visible)
 		var visibility = 'hide';
 		if (this.props.visible) {
 			visibility= 'show';
@@ -42,7 +41,6 @@ class Menu extends Component {
 						{this.props.locations.map((location) => (
 							<li
 								key={location.id}
-
 								>
 								<a
 								onKeyDown={e => e.keyCode !== 13 || e.target.click()}

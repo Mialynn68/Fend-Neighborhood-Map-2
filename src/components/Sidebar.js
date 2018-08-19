@@ -4,7 +4,6 @@ import Menu from './Menu'
 class Sidebar extends Component {
 
   render() {
-		//console.log(this.state.visible)
     return (
 			<div className="sidebar">
 				<div className="sidebar-header">
