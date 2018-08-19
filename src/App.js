@@ -92,7 +92,7 @@ class App extends Component {
 			center: props.location,
 			isOpen: true
 		})
-		//this.handleToggle()
+		//this.selectPhoto(props)
 	}
 
 	onListitemClick = (props, e) => {
@@ -105,8 +105,6 @@ class App extends Component {
 		})
 		this.toggleMenu()
 		//this.selectPhoto(props)
-		//console.log('clicked')
-		//e.stopPropagation()
 	}
 
 	onMapClick = (props) => {
@@ -116,18 +114,21 @@ class App extends Component {
 				center: this.state.defaultCenter,
 				isOpen: false
 			})
-			//this.handleToggle()
 	}
 
 	handleMouseDown(e) {
 		this.toggleMenu()
-		//console.log('clicked')
-		//e.stopPropagation()
 	}
 
 	toggleMenu() {
 		this.setState({
 			visible: !this.state.visible
+		})
+	}
+
+	toggleInfowindow() {
+		this.setState({
+			isOpen: !this.state.isOpen
 		})
 	}
 
@@ -143,6 +144,9 @@ class App extends Component {
 		var selectedPhoto = responseJson.response.venue.bestPhoto;
 		//console.log(selectedPhoto);
 		this.setState({selectedPhoto: selectedPhoto})
+	})
+	.catch((response) => {
+		alert("Sorry, Foursquare photo could not be loaded")
 	})
 	}
 

@@ -28,7 +28,8 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 
 
 			render() {
-				//console.log(this.props.selectedPhoto);
+				//console.log(this.props.selectedPlace);
+				console.log(this.props.selectedPhoto);
 				//console.log(this.state.selectedPhoto.prefix + this.state.selectedPhoto.width + 'x' + this.state.selectedPhoto.height + this.state.selectedPhoto.suffix)
 
 				const GoogleMapContainer = withGoogleMap(props => (
@@ -55,25 +56,24 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
 							>
 							{this.props.isOpen && location.id === this.props.selectedPlace.id &&
 								<InfoWindow
-									//position
 									className='infowindow'
 									onCloseClick={this.props.handleToggle}
 								>
 									<div>
 										<h3 className='infowindow-heading'>{this.props.selectedPlace.name}</h3>
-										<hr/>
+										<hr className='infowindow-line'/>
 										<div className='infowindow-content'>
-											{this.props.selectedPlace.location && this.props.selectedPlace.location.address && this.props.selectedPlace.location.city &&
-											<p
+										{this.props.selectedPlace.location && this.props.selectedPlace.location.address && this.props.selectedPlace.location.city &&
+												<span>{this.props.selectedPlace.location.address}, {this.props.selectedPlace.location.city}</span>
+											/*<p
 												className='infowindow-content-text'>{this.props.selectedPlace.location.address}<br/>{this.props.selectedPlace.location.city}
-											</p>
+											</p>*/
 											}
 										</div>
-										{/*<img
-											src={this.props.selectedPhoto.prefix + this.props.selectedPhoto.width + 'x' + this.props.selectedPhoto.height + this.props.selectedPhoto.suffix}
-											width="300px"
-											height="200px"
-										/>*/}
+										<img
+											//src={this.props.selectedPhoto.prefix + this.props.selectedPhoto.width + 'x' + this.props.selectedPhoto.height + this.props.selectedPhoto.suffix}
+											//src={this.props.selectedPhoto.prefix + '300x300' + this.props.selectedPhoto.suffix}
+										/>
 									</div>
 								</InfoWindow>
 							}
