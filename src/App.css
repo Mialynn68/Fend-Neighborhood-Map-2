@@ -42,13 +42,12 @@ h2 {
 	height: 100%;
 	position: fixed;
 	left: 0;
-	/*top: 150px;*/
 	background: #e3dece;
 	transition: transform .3s cubic-bezier(0, .52, 0, 1);
 	display:-webkit-box;
-    display:flex;
-    -webkit-box-orient:vertical;
-    flex-direction:column;
+  display:flex;
+  -webkit-box-orient:vertical;
+  flex-direction:column;
 }
 
 #menu.hide {
@@ -78,10 +77,10 @@ h2 {
 
 .burger {
 	width: 30px;
-    height: 4px;
-    background-color: #69531e;
-    margin: 4px 0;
-		border-radius: 2px;
+  height: 4px;
+  background-color: #69531e;
+  margin: 4px 0;
+	border-radius: 2px;
 }
 
 .sidebar-search {
@@ -90,9 +89,9 @@ h2 {
 
 #menu .sidebar-flex-scroll {
 	overflow-y:scroll;
-      min-height:0;
-      -webkit-box-flex:1;
-      flex:1;
+  min-height:0;
+  -webkit-box-flex:1;
+  flex:1;
 }
 
 .locations-list {
@@ -183,25 +182,25 @@ input {
 	 }
 
 	 .header {
-	   background-color: #222;
-	   height: 60px;
-	   padding-top: 25px;
-	   color: white;
+			background-color: #222;
+			height: 60px;
+			padding-top: 25px;
+			color: white;
 	 }
 
 	 .sidebar {
-		 width: 25vw;
-		 height: 100%;
+			width: 25vw;
+			height: 100%;
 	 }
 
 	 #burger-button {
-		 display: none;
+			display: none;
 	 }
 
 	 .sidebar-header {
-	 	width: 25vw;
-	 	height: 150px;
-	 	padding: 50px 30px 50px 30px;
+			width: 25vw;
+			height: 150px;
+			padding: 50px 30px 50px 30px;
 	 }
 
 	 input {

@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import { withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps'
-//import markerIcon from './images/Coffee_1.png'
 /*global google*/
 
 		class MyMap extends Component {

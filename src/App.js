@@ -135,7 +135,7 @@ class App extends Component {
     return (
       <div className="App">
 				<div className="container">
-					<div className="main" id="main">
+					<div className="main" id="main" tabIndex="-1">
 						<Sidebar
 						 	locations={this.state.locations}
 							filterLocations={this.filterLocations}
