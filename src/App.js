@@ -58,12 +58,13 @@ class App extends Component {
 
 	filterLocations = (query) => {
 		if (query) {
-		this.setState((prevState, props) => ({
-				locations: prevState.locations.filter(location =>
-				location.name.toLowerCase().includes(query))
-			}))
-		} else {
-			this.getLocations()
+			let filteredLocations = this.state.initialLocations.filter((location) =>
+			location.name.toLowerCase().includes(query))
+				if (filteredLocations) {
+					this.setState({locations: filteredLocations})
+				}
+			} else {
+			this.setState({locations: this.state.initialLocations})
 		}
 	}
 
